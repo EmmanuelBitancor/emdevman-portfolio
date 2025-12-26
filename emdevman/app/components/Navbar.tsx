@@ -3,14 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
-import { Menu, X } from "lucide-react"; // Assuming you have lucide-react installed
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Added 'Tech Stack' here
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Projects", href: "#projects" },
+    { name: "Tech Stack", href: "#tech-stack" }, 
     { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
@@ -22,7 +24,7 @@ export default function Navbar() {
       }`}
     >
       <div className="flex items-center justify-between px-6 py-3">
-        {/* Logo / Name */}
+        {/* Logo */}
         <Link 
           href="/" 
           className="text-lg font-bold tracking-tight"
@@ -44,29 +46,26 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Theme Toggle & Mobile Menu Button */}
+        {/* Icons */}
         <div className="flex items-center gap-2">
           <ThemeToggle />
-
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 text-zinc-600 dark:text-zinc-400 hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-colors"
-            aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Dropdown */}
       {isOpen && (
         <div className="md:hidden flex flex-col items-center gap-4 pb-6 pt-2 px-6 border-t border-black/5 dark:border-white/5 animate-in slide-in-from-top-2 fade-in duration-200">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              onClick={() => setIsOpen(false)} // Close menu when clicked
+              onClick={() => setIsOpen(false)}
               className="w-full text-center py-2 text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-lg transition-colors"
             >
               {link.name}

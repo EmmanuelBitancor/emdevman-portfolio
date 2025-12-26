@@ -3,6 +3,7 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeProvider";
 import Navbar from "./components/Navbar";
+import ClientBackground from "./components/ClientBackground"; 
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -15,8 +16,8 @@ const fontMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "My personal portfolio",
+  title: "Emmanuel | Full Stack Developer",
+  description: "Portfolio of a Full Stack Developer",
 };
 
 export default function RootLayout({
@@ -25,19 +26,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth scroll-pt-24">
       <body
-        // 1. ADDED: transition-colors duration-300 ease-in-out
         className={`${fontSans.variable} ${fontMono.variable} antialiased bg-background text-foreground transition-colors duration-300 ease-in-out`}
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          // 2. REMOVED: disableTransitionOnChange (It prevents the animation!)
         >
-          <Navbar />
-          {children} 
+          <ClientBackground />
+          <div className="relative z-10 flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">
+              {children}
+            </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>

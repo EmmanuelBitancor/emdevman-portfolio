@@ -24,6 +24,9 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   
-  /* ADD THIS LINE for the smooth fade effect */
+  /* Ensures full height so background doesn't cut off */
+  min-height: 100vh;
+  
+  /* Smooth transition for theme switching */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
