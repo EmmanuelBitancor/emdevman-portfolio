@@ -4,10 +4,7 @@ export default function Hero() {
   return (
     <section className="relative z-10 w-full pt-32 pb-12 md:py-24 lg:py-32 xl:py-48 text-foreground transition-colors duration-300 ease-in-out">
       <div className="container px-4 md:px-6 mx-auto">
-        {/* CHANGE: Increased 'gap-6' to 'gap-12' to separate Text and Image on mobile */}
         <div className="grid gap-12 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] items-center">
-          
-          {/* Text Content */}
           <div className="flex flex-col justify-center space-y-8">
             <div className="space-y-4">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
@@ -33,10 +30,7 @@ export default function Hero() {
               </a>
             </div>
           </div>
-
-          {/* Image Content */}
           <div className="flex items-center justify-center">
-            {/* Added 'mx-auto' to ensure it centers perfectly within the grid column on mobile */}
             <div className="relative aspect-square overflow-hidden rounded-full border-2 border-zinc-100 dark:border-zinc-800 md:aspect-[4/4] md:w-[400px] mx-auto transition-colors duration-300">
               <Image
                 alt="Portrait of the developer"

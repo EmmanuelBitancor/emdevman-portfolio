@@ -6,8 +6,6 @@ export default function Contact() {
   return (
     <section id="contact" className="w-full py-20 px-4 md:px-6 bg-white dark:bg-black transition-colors duration-300 ease-in-out">
       <div className="container mx-auto max-w-6xl">
-        
-        {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16 space-y-4">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Get in Touch
@@ -18,8 +16,6 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-          
-          {/* Left Side: Contact Info & Call to Action */}
           <div className="flex flex-col space-y-8">
             <div className="space-y-4">
               <h3 className="text-2xl font-bold">Let&apos;s build something awesome.</h3>
@@ -27,8 +23,6 @@ export default function Contact() {
                 I&lsquo;m currently looking for new opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
               </p>
             </div>
-
-            {/* Status Indicator */}
             <div className="flex items-center gap-3 p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 w-fit">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -38,8 +32,6 @@ export default function Contact() {
                 Available for freelance & full-time
               </span>
             </div>
-
-            {/* Contact Details Cards */}
             <div className="space-y-4">
               <a href="mailto:hello@example.com" className="group flex items-center gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 transition-colors duration-300">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white dark:bg-zinc-800 shadow-sm group-hover:scale-110 transition-transform duration-300">
@@ -47,7 +39,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">Email Me</p>
-                  <p className="text-zinc-900 dark:text-zinc-100 font-semibold">hello@emmanuel.com</p>
+                  <p className="text-zinc-900 dark:text-zinc-100 font-semibold">emmanuel.bitancor0024@gmail.com</p>
                 </div>
               </a>
 
@@ -57,13 +49,11 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">Location</p>
-                  <p className="text-zinc-900 dark:text-zinc-100 font-semibold">San Francisco, CA (Remote)</p>
+                  <p className="text-zinc-900 dark:text-zinc-100 font-semibold">Somewhere in Mars</p>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Right Side: Contact Form */}
           <div className="p-6 md:p-8 rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
