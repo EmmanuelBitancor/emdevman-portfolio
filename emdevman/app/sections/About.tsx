@@ -11,8 +11,9 @@ export default function About() {
     >
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left Side: Text Content */}
-          <div className="flex flex-col space-y-6">
+          
+          {/* Left Side: Text Content (Unchanged) */}
+          <div className="flex flex-col space-y-6 py-4 z-10">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               About Me
             </h2>
@@ -32,7 +33,7 @@ export default function About() {
             </p>
 
             {/* Feature/Skills Grid */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
+            <div className="grid grid-cols-2 gap-4 pt-4 mt-auto">
               <div className="flex flex-col gap-2 p-4 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800">
                 <Code2 className="text-zinc-900 dark:text-zinc-100" size={24} />
                 <span className="font-semibold">Clean Code</span>
@@ -62,46 +63,47 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right Side: Image Mosaic */}
-          <div className="relative h-full min-h-[500px] w-full">
-            {/* Background decorative blob */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-zinc-200 dark:bg-zinc-800 rounded-full blur-[100px] opacity-50" />
+          {/* Right Side: 3-Image "Random" Layout */}
+          {/* Defined height is crucial for absolute positioning to work correctly */}
+          <div className="relative w-full h-[500px] md:h-[600px]">
+            {/* Background Decorative Blob */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-zinc-200 dark:bg-zinc-800 rounded-full blur-[100px] opacity-50 z-0" />
 
-            <div className="grid grid-cols-2 gap-4 h-full relative z-10">
-              {/* Tall Image Left */}
-              <div className="relative row-span-2 overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-lg">
-                <Image
-                  src="/assets/images/placeholder.jpg"
-                  alt="Coding setup"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                />
-              </div>
-
-              {/* Top Right Image */}
-              <div className="relative h-60 overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-lg">
-                <Image
-                  src="/assets/images/placeholder.jpg"
-                  alt="Coffee and lifestyle"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                />
-              </div>
-
-              {/* Bottom Right Image */}
-              <div className="relative h-60 overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-lg">
-                <Image
-                  src="/assets/images/placeholder.jpg"
-                  alt="Team collaboration"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                />
-              </div>
+            {/* Image 1: Back layer, Landscape, slightly rotated left */}
+            <div className="absolute top-0 left-0 w-4/5 h-3/5 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-lg overflow-hidden z-10 -rotate-2 transition-all duration-500 hover:z-40 hover:scale-105 hover:rotate-0 group">
+              <Image
+                src="/assets/images/coding2.png" // Replace with landscape image (e.g., desk setup)
+                alt="Setup"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
             </div>
+
+            {/* Image 2: Middle layer, Square, rotated right, positioned right */}
+            <div className="absolute top-1/4 right-0 w-1/2 aspect-square rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden z-20 rotate-3 transition-all duration-500 hover:z-40 hover:scale-105 hover:rotate-0">
+               <Image
+                src="/assets/images/coding3.png" // Replace with square image (e.g., coffee/detail)
+                alt="Detail"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+
+            {/* Image 3: Front layer, Portrait, slightly rotated left, positioned bottom left */}
+            <div className="absolute bottom-0 left-8 w-2/5 h-1/2 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden z-30 -rotate-1 transition-all duration-500 hover:z-40 hover:scale-105 hover:rotate-0">
+               <Image
+                src="/assets/images/coding1.png" // Replace with portrait image (e.g., coding on laptop)
+                alt="Coding"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 20vw"
+              />
+            </div>
+
           </div>
+
         </div>
       </div>
     </section>

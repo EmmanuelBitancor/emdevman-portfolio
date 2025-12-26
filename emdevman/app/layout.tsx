@@ -38,7 +38,7 @@ export default function RootLayout({
           <ClientBackground />
           <div className="relative z-10 flex flex-col min-h-screen">
             <Navbar />
-            <main className="flex-grow">
+            <main className="flex-grow w-full">
               {children}
             </main>
           </div>

@@ -7,12 +7,10 @@ import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Added 'Tech Stack' here
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Projects", href: "#projects" },
     { name: "Tech Stack", href: "#tech-stack" }, 
+    { name: "Projects", href: "#projects" },
     { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
@@ -24,7 +22,6 @@ export default function Navbar() {
       }`}
     >
       <div className="flex items-center justify-between px-6 py-3">
-        {/* Logo */}
         <Link 
           href="/" 
           className="text-lg font-bold tracking-tight"
@@ -32,8 +29,6 @@ export default function Navbar() {
         >
           ESB
         </Link>
-
-        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-6 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -46,7 +41,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Icons */}
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
@@ -58,7 +52,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
       {isOpen && (
         <div className="md:hidden flex flex-col items-center gap-4 pb-6 pt-2 px-6 border-t border-black/5 dark:border-white/5 animate-in slide-in-from-top-2 fade-in duration-200">
           {navLinks.map((link) => (

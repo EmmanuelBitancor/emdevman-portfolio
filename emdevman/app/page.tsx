@@ -6,12 +6,12 @@ import Contact from "./sections/Contact";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center text-foreground">
+    <div className="flex flex-col w-full">
       <Hero />
       <TechStack />
       <Projects />
       <About />
       <Contact />
-    </main>
+    </div>
   );
 }
