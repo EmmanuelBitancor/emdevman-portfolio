@@ -16,8 +16,11 @@ const fontMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Emmanuel | Full Stack Developer",
+  title: "Emmanuel | Web Enthusiast",
   description: "Portfolio of a Full Stack Developer",
+  icons: {
+    icon: "/assets/images/icon.ico",
+  },
 };
 
 export default function RootLayout({

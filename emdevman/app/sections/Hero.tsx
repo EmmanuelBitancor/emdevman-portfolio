@@ -11,7 +11,7 @@ export default function Hero() {
                 Hi, I&apos;m <span className="text-zinc-500 dark:text-zinc-400">Emmanuel</span>
               </h1>
               <p className="max-w-[600px] text-zinc-500 md:text-xl dark:text-zinc-400">
-                A Full Stack Developer crafting beautiful, accessible, and performant web experiences using Next.js.
+                A Web Enthusiast & Developer crafting beautiful, accessible, and performant web experiences using Next.js.
               </p>
             </div>
             
