@@ -16,7 +16,7 @@ const fontMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Emmanuel | Web Enthusiast",
+  title: "Emmanuel Sumatra Bitancor",
   description: "Portfolio of a Full Stack Developer",
   icons: {
     icon: "/assets/images/icon.ico",
