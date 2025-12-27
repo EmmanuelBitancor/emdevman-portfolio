@@ -15,6 +15,7 @@ export default function Navbar() {
   if (hiddenRoutes.includes(pathname)) return null;
 
   const navLinks = [
+    { name: "Home", href: "/" },
     { name: "Tech Stack", href: "#tech-stack" },
     { name: "Projects", href: "#projects" },
     { name: "About", href: "#about" },
@@ -22,25 +23,30 @@ export default function Navbar() {
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // 1. Close the mobile menu immediately
     setIsOpen(false);
 
-    // Scenario 1: Back to Top (Clicking Home or Logo)
-    if (href === "/") {
-      if (pathname === "/") {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-      return;
-    }
+    // 2. Prevent the default anchor behavior so the URL hash (#) doesn't appear
+    // ONLY if we are on the homepage and it is a hash link or the home link
+    const isHashLink = href.startsWith("#");
+    const isHomeLink = href === "/";
 
-    // Scenario 2: Hash Links (#projects)
-    if (href.startsWith("#")) {
-      // If we are on the homepage, the CSS 'scroll-behavior: smooth' 
-      // in globals.css will handle the scroll automatically.
-      // We DO NOT preventDefault here, so the URL updates to include the hash.
+    if ((isHashLink || isHomeLink) && pathname === "/") {
+      e.preventDefault();
       
-      // However, if we are on a different page (e.g., /blog),
-      // Next.js Link will handle the route change to /#projects
+      // 3. Use a small timeout to ensure the menu closes BEFORE scrolling.
+      // This fixes the mobile scroll issue where layout shifts break the scroll position.
+      setTimeout(() => {
+        if (isHomeLink) {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else if (isHashLink) {
+          const elementId = href.replace("#", "");
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }, 100); 
     }
   };
 
@@ -64,6 +70,7 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6 text-sm font-medium">
           {navLinks.map((link) => {
+            // Hide Home link on Desktop
             if (link.name === "Home") return null;
             return (
               <Link
@@ -101,16 +108,21 @@ export default function Navbar() {
             className="md:hidden overflow-hidden border-t border-black/5 dark:border-white/5"
           >
             <div className="flex flex-col items-start gap-6 pb-8 pt-4 px-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className="w-full text-left text-lg font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                // FIXED: Hide Home link on Mobile as well
+                if (link.name === "Home") return null;
+                
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className="w-full text-left text-lg font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         )}

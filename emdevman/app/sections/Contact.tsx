@@ -55,7 +55,7 @@ export default function Contact() {
                   <input
                     id="name"
                     type="text"
-                    placeholder="John Doe"
+                    placeholder="your name"
                     className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all"
                   />
                 </div>
@@ -66,7 +66,7 @@ export default function Contact() {
                   <input
                     id="email"
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder="youremail@example.com"
                     className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all"
                   />
                 </div>
@@ -79,7 +79,7 @@ export default function Contact() {
                 <input
                   id="subject"
                   type="text"
-                  placeholder="Project Inquiry"
+                  placeholder="Purpose of your message.."
                   className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all"
                 />
               </div>
@@ -91,7 +91,7 @@ export default function Contact() {
                 <textarea
                   id="message"
                   rows={4}
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me more..."
                   className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all resize-none"
                 ></textarea>
               </div>
