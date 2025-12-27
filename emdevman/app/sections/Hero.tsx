@@ -45,7 +45,7 @@ export default function Hero() {
               </h1>
               <p className="max-w-[600px] text-zinc-500 md:text-xl dark:text-zinc-400">
                 A Web Enthusiast & Developer crafting beautiful, accessible, and
-                performant web experiences using Next.js.
+                performant web experiences.
               </p>
             </div>
 
