@@ -4,7 +4,7 @@ import { Mail, MapPin, Send} from "lucide-react";
 
 export default function Contact() {
   return (
-    <section id="contact" className="w-full py-20 px-4 md:px-6 bg-white dark:bg-black transition-colors duration-300 ease-in-out">
+    <section id="contact" className="w-full py-20 px-4 md:px-6 bg-zinc-50/50 dark:bg-zinc-900/20 transition-colors duration-300 ease-in-out">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col items-center text-center mb-16 space-y-4">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -22,15 +22,6 @@ export default function Contact() {
               <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
                 I&lsquo;m currently looking for new opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
               </p>
-            </div>
-            <div className="flex items-center gap-3 p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 w-fit">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-              </span>
-              <span className="text-sm font-medium text-zinc-600 dark:text-zinc-300">
-                Available for freelance & full-time
-              </span>
             </div>
             <div className="space-y-4">
               <a href="mailto:hello@example.com" className="group flex items-center gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 transition-colors duration-300">
