@@ -15,7 +15,6 @@ const techCategories = [
       { name: "React", level: "Expert" },
       { name: "TypeScript", level: "Advanced" },
       { name: "Tailwind CSS", level: "Expert" },
-      { name: "Framer Motion", level: "Intermediate" },
     ],
   },
   {
@@ -23,10 +22,9 @@ const techCategories = [
     icon: <Server className="w-5 h-5" />,
     skills: [
       { name: "Node.js", level: "Advanced" },
-      { name: "PostgreSQL", level: "Advanced" },
-      { name: "Prisma ORM", level: "Advanced" },
+      { name: "MySQL", level: "Advanced" },
       { name: "Supabase", level: "Intermediate" },
-      { name: "GraphQL", level: "Intermediate" },
+      { name: "Firebase", level: "Intermediate" },
     ],
   },
   {
@@ -34,7 +32,7 @@ const techCategories = [
     icon: <Wrench className="w-5 h-5" />,
     skills: [
       { name: "Git / GitHub", level: "Expert" },
-      { name: "Docker", level: "Intermediate" },
+      { name: "Postman", level: "Intermediate" },
       { name: "Vercel", level: "Expert" },
       { name: "Figma", level: "Advanced" },
       { name: "VS Code", level: "Expert" },
@@ -84,12 +82,6 @@ export default function TechStack() {
             </div>
           ))}
         </div>
-        <div className="mt-12 text-center">
-          <p className="text-sm text-zinc-500 dark:text-zinc-500">
-            Also experienced with Python, AWS, and Agile methodologies.
-          </p>
-        </div>
-
       </div>
     </section>
   );
