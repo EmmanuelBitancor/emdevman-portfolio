@@ -73,25 +73,31 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          <motion.div
+         <motion.div
             className="flex items-center justify-center"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            {/* CONTAINER CHANGES: Added explicit widths for mobile (w-[280px] sm:w-[350px]) */}
+            {/* CONTAINER CHANGES: Added explicit widths for mobile */}
             <div
               onClick={cycleImage}
+              // 1. Prevent the context menu (right-click/long-press menu)
+              onContextMenu={(e) => e.preventDefault()}
               className="relative aspect-square overflow-hidden rounded-full border-2 border-zinc-100 dark:border-zinc-800 w-[280px] sm:w-[350px] md:w-[400px] mx-auto transition-colors duration-300 cursor-pointer active:scale-95 transition-transform"
             >
-              {/* IMAGE CHANGES: Removed width/height, added fill and sizes */}
+              {/* IMAGE CHANGES: Added pointer-events-none and select-none */}
               <Image
                 alt="Portrait of the developer"
                 src={images[currentImageIndex]}
                 fill
                 sizes="(max-width: 768px) 350px, 400px"
-                className="object-cover"
+                // 2. pointer-events-none makes the image ignore touches (passing them to the parent div)
+                // 3. select-none prevents highlighting
+                className="object-cover pointer-events-none select-none"
                 priority
+                // 4. Prevent dragging the image on desktop
+                draggable={false} 
               />
             </div>
           </motion.div>

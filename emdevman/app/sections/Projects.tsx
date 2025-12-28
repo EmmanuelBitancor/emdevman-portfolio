@@ -97,6 +97,8 @@ export default function Projects() {
                 <div 
                   className="relative h-32 sm:h-48 w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 cursor-pointer"
                   onClick={() => handleOpenModal(project)}
+                  // 1. Prevent Right-Click / Long-Press menu on the container
+                  onContextMenu={(e) => e.preventDefault()}
                 >
                   <Image
                     src={project.image}
@@ -104,7 +106,11 @@ export default function Projects() {
                     fill
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
-                    className="transition-transform duration-500 group-hover:scale-105"
+                    // 2. pointer-events-none: Ensures the image doesn't "catch" the touch, letting it hit the parent div instead
+                    // 3. select-none: Prevents blue highlighting
+                    className="transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+                    // 4. Prevent dragging on desktop
+                    draggable={false}
                   />
                 </div>
 

@@ -62,7 +62,7 @@ export default function PrivateAccess({
 
         {isPrivate && (
           <a 
-            href={`mailto:your.email@example.com?subject=Request Access: ${projectName}&body=Hi Emmanuel,%0D%0A%0D%0AI would like to request access to view the case study for ${projectName}.`}
+            href={`mailto:emmanuel.bitancor0024@gmail.com?subject=Request Access: ${projectName}&body=Hi Emmanuel,%0D%0A%0D%0AI would like to request access to view the case study for ${projectName}.`}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 hover:opacity-90 shadow-lg shadow-zinc-500/20 text-sm font-medium transition-all"
           >
             <Mail size={16} />

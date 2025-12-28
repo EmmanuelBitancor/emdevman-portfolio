@@ -87,7 +87,7 @@ export default function About() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side: Images */}
+{/* Right Side: Images */}
           <motion.div 
             className="relative w-full h-[500px] md:h-[600px]"
             initial={{ opacity: 0, x: 50 }}
@@ -104,16 +104,21 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1, rotate: -2 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
+              // 1. Block right-click on the wrapper
+              onContextMenu={(e) => e.preventDefault()}
               className="absolute top-0 left-0 w-4/5 h-3/5 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-lg overflow-hidden z-10 transition-all duration-500 hover:z-40 hover:scale-105 hover:rotate-0 group"
             >
               <Image
                 src={coding2} 
                 alt="Setup"
                 fill
-                className="object-cover"
+                // 2. Disable pointer events & selection on the image
+                className="object-cover pointer-events-none select-none"
                 sizes="(max-width: 768px) 100vw, 40vw"
                 loading="lazy"
                 quality={85}
+                // 3. Disable dragging
+                draggable={false}
               />
             </motion.div>
 
@@ -123,16 +128,21 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
+              // 1. Block right-click on the wrapper
+              onContextMenu={(e) => e.preventDefault()}
               className="absolute top-1/4 right-0 w-1/2 aspect-square rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden z-20 rotate-3 transition-all duration-500 hover:z-40 hover:scale-105 hover:rotate-0"
             >
               <Image
                 src={coding3}
                 alt="Detail"
                 fill
-                className="object-cover"
+                // 2. Disable pointer events & selection on the image
+                className="object-cover pointer-events-none select-none"
                 sizes="(max-width: 768px) 50vw, 25vw"
                 loading="lazy"
                 quality={85}
+                // 3. Disable dragging
+                draggable={false}
               />
             </motion.div>
 
@@ -142,16 +152,21 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0, rotate: -1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
+              // 1. Block right-click on the wrapper
+              onContextMenu={(e) => e.preventDefault()}
               className="absolute bottom-0 left-8 w-2/5 h-1/2 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden z-30 transition-all duration-500 hover:z-40 hover:scale-105 hover:rotate-0"
             >
               <Image
                 src={coding1}
                 alt="Coding"
                 fill
-                className="object-cover"
+                // 2. Disable pointer events & selection on the image
+                className="object-cover pointer-events-none select-none"
                 sizes="(max-width: 768px) 50vw, 20vw"
                 loading="lazy"
                 quality={85}
+                // 3. Disable dragging
+                draggable={false}
               />
             </motion.div>
           </motion.div>

@@ -24,7 +24,7 @@ export default function Contact() {
               </p>
             </div>
             <div className="space-y-4">
-              <a href="mailto:hello@example.com" className="group flex items-center gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 transition-colors duration-300">
+              <a href="mailto:emmanuel.bitancor0024@gmail.com" className="group flex items-center gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 transition-colors duration-300">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white dark:bg-zinc-800 shadow-sm group-hover:scale-110 transition-transform duration-300">
                   <Mail className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
                 </div>
@@ -45,8 +45,9 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div className="p-6 md:p-8 rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
-            <form className="space-y-6">
+<div className="p-6 md:p-8 rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
+            {/* Added autoComplete="off" to the form tag */}
+            <form className="space-y-6" autoComplete="off">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -54,7 +55,9 @@ export default function Contact() {
                   </label>
                   <input
                     id="name"
+                    name="name" // It's good practice to add name attributes even if autocomplete is off
                     type="text"
+                    autoComplete="off" // Disables suggestions for this field
                     placeholder="your name"
                     className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all"
                   />
@@ -65,7 +68,9 @@ export default function Contact() {
                   </label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
+                    autoComplete="off" // Disables suggestions for this field
                     placeholder="youremail@example.com"
                     className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all"
                   />
@@ -78,7 +83,9 @@ export default function Contact() {
                 </label>
                 <input
                   id="subject"
+                  name="subject"
                   type="text"
+                  autoComplete="off" // Disables suggestions for this field
                   placeholder="Purpose of your message.."
                   className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all"
                 />
@@ -90,7 +97,9 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={4}
+                  autoComplete="off" // Usually not needed for textarea, but good for consistency
                   placeholder="Tell me more..."
                   className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all resize-none"
                 ></textarea>

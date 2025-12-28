@@ -50,14 +50,22 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
           - h-64 shrink-0: Enforces height on mobile.
           - relative z-0: Ensures it sits in the correct stacking context.
         */}
-        <div className="relative w-full h-64 md:h-auto md:w-1/2 shrink-0 bg-zinc-200 dark:bg-zinc-800 z-0">
+        <div 
+          className="relative w-full h-64 md:h-auto md:w-1/2 shrink-0 bg-zinc-200 dark:bg-zinc-800 z-0"
+          // 1. Block the Right-Click / Long-Press menu on the container
+          onContextMenu={(e) => e.preventDefault()}
+        >
           <Image
             src={project.image}
             alt={project.title}
             fill
-            className="object-contain"
+            // 2. pointer-events-none: The browser ignores touches on the image
+            // 3. select-none: Prevents highlighting
+            className="object-contain pointer-events-none select-none"
             sizes="(max-width: 768px) 100vw, 50vw"
             priority
+            // 4. Prevent dragging on desktop
+            draggable={false}
           />
         </div>
 
