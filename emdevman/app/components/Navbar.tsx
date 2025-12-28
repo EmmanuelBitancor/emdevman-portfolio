@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const hiddenRoutes = ["/error/private", "/404"];
+const hiddenRoutes = ["/error/private", "/404", "/error/site"];
 
   if (hiddenRoutes.includes(pathname)) return null;
 
