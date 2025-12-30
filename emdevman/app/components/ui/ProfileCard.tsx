@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/immutability */
 /* eslint-disable @next/next/no-img-element */
 "use client";
@@ -10,7 +11,6 @@ const GRADIENT_DARK = "linear-gradient(145deg, rgba(96, 73, 110, 0.2) 0%, rgba(1
 const GRADIENT_LIGHT = "linear-gradient(145deg, rgba(255, 255, 255, 0.4) 0%, rgba(200, 230, 255, 0.3) 100%)";
 
 const ANIMATION_CONFIG = {
-  DEVICE_BETA_OFFSET: 20,
   ENTER_TRANSITION_MS: 180,
 };
 
@@ -22,13 +22,8 @@ const adjust = (v: number, fMin: number, fMax: number, tMin: number, tMax: numbe
 
 interface ProfileCardProps {
   avatarUrl?: string;
-  miniAvatarUrl?: string;
   name?: string;
   title?: string;
-  handle?: string;
-  status?: string;
-  contactText?: string;
-  onContactClick?: () => void;
   innerGradient?: string;
 }
 
@@ -43,7 +38,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   const enterTimerRef = useRef<number | null>(null);
   const leaveRafRef = useRef<number | null>(null);
 
-  // Theme Handling
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -71,16 +65,16 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       const percentX = clamp((100 / width) * x);
       const percentY = clamp((100 / height) * y);
 
+      // We set these vars on the wrapper, so children can inherit them
       const properties: Record<string, string> = {
         "--pointer-x": `${percentX}%`,
         "--pointer-y": `${percentY}%`,
-        "--background-x": `${adjust(percentX, 0, 100, 35, 65)}%`,
-        "--background-y": `${adjust(percentY, 0, 100, 35, 65)}%`,
         "--pointer-from-center": `${clamp(Math.hypot(percentY - 50, percentX - 50) / 50, 0, 1)}`,
         "--pointer-from-top": `${percentY / 100}`,
         "--pointer-from-left": `${percentX / 100}`,
-        "--rotate-x": `${round(-(percentX - 50) / 5)}deg`,
-        "--rotate-y": `${round((percentY - 50) / 4)}deg`,
+        // Note: We inverted the Y axis here for a natural tilt feel
+        "--rotate-x": `${round(-(percentY - 50) / 3.5)}deg`, 
+        "--rotate-y": `${round((percentX - 50) / 3.5)}deg`,
       };
 
       for (const [k, v] of Object.entries(properties)) {
@@ -133,9 +127,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         if (!shellRef.current) return;
         targetX = shellRef.current.clientWidth / 2;
         targetY = shellRef.current.clientHeight / 2;
-        currentX = targetX;
-        currentY = targetY;
-        setVarsFromXY(currentX, currentY);
+        start();
       },
       getCurrent() {
         return { x: currentX, y: currentY, tx: targetX, ty: targetY };
@@ -149,16 +141,13 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     };
   }, []);
 
-  const handlePointerMove = useCallback(
-    (e: React.PointerEvent) => {
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
       if (!shellRef.current || !tiltEngine) return;
       const rect = shellRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       tiltEngine.setTarget(x, y);
-    },
-    [tiltEngine]
-  );
+    }, [tiltEngine]);
 
   const handlePointerEnter = useCallback(() => {
     if (!shellRef.current || !tiltEngine) return;
@@ -197,31 +186,30 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     };
   }, [tiltEngine]);
 
-  const cardStyle = useMemo(
-    () =>
-      ({
-        "--inner-gradient": innerGradient ?? (isDark ? GRADIENT_DARK : GRADIENT_LIGHT),
-      } as React.CSSProperties),
-    [innerGradient, isDark]
-  );
-
   const isMountedForAnimation = mounted;
 
   return (
     <div
       ref={wrapRef}
-      style={cardStyle}
-      // Added transform-gpu to force hardware acceleration on the container
-      className="pc-card-wrapper relative z-10 w-full max-w-[350px] mx-auto h-[480px] perspective-500 transform-gpu"
+      style={{
+         "--inner-gradient": innerGradient ?? (isDark ? GRADIENT_DARK : GRADIENT_LIGHT),
+         // Default variables to prevent jump on initial load
+         "--rotate-x": "0deg",
+         "--rotate-y": "0deg",
+         "--pointer-x": "50%",
+         "--pointer-y": "50%"
+      } as React.CSSProperties}
+      // 1. Changed perspective-500 to arbitrary value [perspective:800px] because Tailwind config is unknown
+      className="pc-card-wrapper relative z-10 w-full max-w-[350px] mx-auto h-[480px] [perspective:800px] transform-gpu"
     >
+      {/* Background Glow */}
       <div 
-        className="absolute inset-0 blur-[80px] transition-opacity bg-transparent duration-500 pointer-events-none"
+        className="absolute inset-0 blur-[80px] transition-opacity duration-500 pointer-events-none"
         style={{
           background: isDark 
-            ? `radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(65, 144, 254, 0.64) 0%, transparent 70%)`
-            : `radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(50, 150, 255, 0.3) 0%, transparent 70%)`,
+            ? `radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(65, 144, 254, 0.4) 0%, transparent 60%)`
+            : `radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(50, 150, 255, 0.2) 0%, transparent 60%)`,
           opacity: isDark ? 0.4 : 0.2,
-          // Optimization: Hide massive blur on very small screens if needed, or keep low opacity
           willChange: 'opacity',
         }}
       />
@@ -232,50 +220,65 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
         className="relative w-full h-full z-20 touch-none group"
+        style={{ transformStyle: 'preserve-3d' }} 
       >
-        <div className="pc-card relative w-full h-full rounded-[30px] overflow-hidden 
-                        bg-transparent dark:bg-transparent 
-                        border border-white/40 dark:border-none 
-                        shadow-2xl transition-colors duration-300">
+        <div 
+           className="pc-card relative w-full h-full rounded-[30px] overflow-visible 
+                      bg-transparent dark:bg-transparent 
+                      border border-white/40 dark:border-white/10
+                      shadow-2xl transition-colors duration-300"
+           // 2. CRITICAL FIX: Applying the calculated variables to the transform property
+           style={{
+             transformStyle: 'preserve-3d',
+             transform: 'rotateX(var(--rotate-x)) rotateY(var(--rotate-y))',
+           }}
+        >
           
           <div 
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center rounded-[30px] overflow-hidden"
             style={{ backgroundImage: innerGradient ?? (isDark ? GRADIENT_DARK : GRADIENT_LIGHT) }}
           />
 
-          <div className="pc-shine absolute inset-0 z-30 opacity-50 pointer-events-none" />
-          <div className="pc-glare absolute inset-0 z-40 pointer-events-none" />
+          {/* 3. FIX: Added actual shine logic */}
+          <div 
+            className="pc-shine absolute inset-0 z-30 pointer-events-none rounded-[30px]" 
+            style={{
+                background: 'radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255,255,255,0.2) 0%, transparent 80%)',
+                opacity: 0.6,
+                mixBlendMode: 'overlay'
+            }}
+          />
 
+         {/* --- IMAGE CONTAINER --- */}
           {/* --- IMAGE CONTAINER --- */}
           <div 
-            className={`absolute bottom-0 left-1/2 w-full max-w-[120%] z-30 origin-bottom pointer-events-none 
-                       transition-all duration-700 ease-out ${isMountedForAnimation ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute bottom-0 left-1/2 w-full max-w-full z-30 origin-bottom pointer-events-none 
+                        transition-all duration-700 ease-out ${isMountedForAnimation ? 'opacity-100' : 'opacity-0'}`}
             style={{
               transform: `
-                translateX(calc(-50% + (var(--pointer-from-left) - 0.5) * 10px)) 
-                translateZ(20px) 
-                scale(1.0)
+                translateX(-50%) 
+                translateZ(40px) 
+                rotateZ(0.01deg)
               `,
-              // FIX: Force browser to keep texture sharp
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden',
-              willChange: 'transform',
             }}
           >
             <img
               src={avatarUrl}
               alt="Profile"
-              // FIX: added 'image-rendering-pixel' class equivalent or style for mobile sharpness
-              className="w-full h-auto object-cover select-none"
+              className="w-full h-auto object-cover select-none drop-shadow-2xl transform-gpu"
               style={{
-                // FIX: Specific hint for WebKit (iOS/Safari) to avoid blur on scale
-                imageRendering: '-webkit-optimize-contrast',
+                 imageRendering: '-webkit-optimize-contrast',
+                 filter: 'none',
               }}
             />
           </div>
-
-          <div className="absolute top-6 left-0 right-0 z-50 px-6 text-center pointer-events-none">
-            <h3 className="text-4xl font-extrabold text-slate-900 dark:text-white drop-shadow-lg mb-1">
+          
+          <div 
+            className="absolute top-6 left-0 right-0 z-50 px-6 text-center pointer-events-none"
+            // 4. FIX: Added translateZ so text floats above card
+            style={{ transform: 'translateZ(60px)' }}
+          >
+            <h3 className="text-4xl font-extrabold text-slate-900 dark:text-white drop-shadow-xl mb-1">
               {name}
             </h3>
             <p className="text-base font-semibold text-slate-700 dark:text-purple-200/80">

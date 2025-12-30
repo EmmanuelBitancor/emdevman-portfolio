@@ -1,10 +1,25 @@
 "use client";
 
-import { Mail, MapPin, Send} from "lucide-react";
+import { useState } from "react";
+import { Mail, MapPin, Send, CheckCircle, X } from "lucide-react";
 
 export default function Contact() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Stop page reload
+    
+    // Here you would typically send the data to an API/Email service
+    
+    // Show the success modal
+    setIsModalOpen(true);
+    
+    // Reset the form fields
+    e.currentTarget.reset();
+  };
+
   return (
-    <section id="contact" className="w-full py-20 px-4 md:px-6 bg-zinc-50/50 dark:bg-zinc-900/20 transition-colors duration-300 ease-in-out">
+    <section id="contact" className="relative w-full py-20 px-4 md:px-6 bg-zinc-50/50 dark:bg-zinc-900/20 transition-colors duration-300 ease-in-out">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col items-center text-center mb-16 space-y-4">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -16,6 +31,7 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+          {/* Left Side: Contact Info */}
           <div className="flex flex-col space-y-8">
             <div className="space-y-4">
               <h3 className="text-2xl font-bold">Let&apos;s build something awesome.</h3>
@@ -45,32 +61,35 @@ export default function Contact() {
               </div>
             </div>
           </div>
-<div className="p-6 md:p-8 rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
-            {/* Added autoComplete="off" to the form tag */}
-            <form className="space-y-6" autoComplete="off">
+
+          {/* Right Side: Form */}
+          <div className="p-6 md:p-8 rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
+            <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Name
+                    Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="name"
-                    name="name" // It's good practice to add name attributes even if autocomplete is off
+                    name="name"
                     type="text"
-                    autoComplete="off" // Disables suggestions for this field
+                    required // Required
+                    autoComplete="off"
                     placeholder="your name"
                     className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all"
                   />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Email
+                    Email <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="email"
                     name="email"
                     type="email"
-                    autoComplete="off" // Disables suggestions for this field
+                    required // Required
+                    autoComplete="off"
                     placeholder="youremail@example.com"
                     className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all"
                   />
@@ -79,13 +98,14 @@ export default function Contact() {
 
               <div className="space-y-2">
                 <label htmlFor="subject" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                  Subject
+                  Subject <span className="text-red-500">*</span>
                 </label>
                 <input
                   id="subject"
                   name="subject"
                   type="text"
-                  autoComplete="off" // Disables suggestions for this field
+                  required // Required
+                  autoComplete="off"
                   placeholder="Purpose of your message.."
                   className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all"
                 />
@@ -93,27 +113,64 @@ export default function Contact() {
 
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                  Message
+                  Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={4}
-                  autoComplete="off" // Usually not needed for textarea, but good for consistency
+                  required // Required
+                  autoComplete="off"
                   placeholder="Tell me more..."
                   className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all resize-none"
                 ></textarea>
               </div>
 
-              <button className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-zinc-900 dark:bg-zinc-100 px-8 text-sm font-medium text-white dark:text-zinc-900 shadow transition-all duration-300 hover:bg-zinc-800 dark:hover:bg-zinc-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+              <button type="submit" className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-zinc-900 dark:bg-zinc-100 px-8 text-sm font-medium text-white dark:text-zinc-900 shadow transition-all duration-300 hover:bg-zinc-800 dark:hover:bg-zinc-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer">
                 Send Message
                 <Send size={16} />
               </button>
             </form>
           </div>
-
         </div>
       </div>
+
+      {/* --- SUCCESS MODAL --- */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="relative w-full max-w-md p-8 bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl border border-zinc-100 dark:border-zinc-800 animate-in zoom-in-95 duration-300">
+            
+            {/* Close Button */}
+            <button 
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="flex flex-col items-center text-center space-y-4">
+              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
+                <CheckCircle size={32} />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">
+                Message Sent!
+              </h3>
+              
+              <p className="text-zinc-500 dark:text-zinc-400">
+                Thank you for reaching out. I&apos;ve received your message and will get back to you as soon as possible!
+              </p>
+
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="w-full mt-4 inline-flex h-11 items-center justify-center rounded-xl bg-zinc-900 dark:bg-zinc-100 px-8 text-sm font-medium text-white dark:text-zinc-900 shadow transition-colors hover:bg-zinc-800 dark:hover:bg-zinc-200"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

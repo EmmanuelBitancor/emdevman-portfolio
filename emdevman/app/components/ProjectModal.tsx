@@ -24,8 +24,6 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
     };
   }, [isOpen]);
 
-  // We do NOT return null here anymore. 
-  // We let AnimatePresence handle the conditional rendering for the animation to work.
   if (!project) return null;
 
   return (
@@ -33,7 +31,6 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
           
-          {/* BACKDROP: Fades in/out */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -43,18 +40,13 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
             onClick={onClose}
           />
 
-          {/* MODAL: Scale and Slide Animation */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ 
-              type: "spring", 
-              damping: 25, 
-              stiffness: 300,
-              duration: 0.3 
-            }}
-            className="relative w-full max-w-5xl bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row h-auto max-h-[90vh] md:h-auto transform-gpu"
+            transition={{ type: "spring", damping: 25, stiffness: 300, duration: 0.3 }}
+            // ADDED: min-h-[500px] ensures the modal is never too short on desktop
+            className="relative w-full max-w-5xl bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:min-h-[500px]"
           >
             
             <button 
@@ -64,19 +56,21 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
               <X size={20} />
             </button>
 
-            {/* IMAGE CONTAINER */}
+            {/* --- IMAGE CONTAINER FIX --- */}
+            {/* 1. h-64: Forces height on mobile (otherwise it collapses to 0) */}
+            {/* 2. md:h-auto: On desktop, it stretches to match the text column height */}
             <div 
-              className="relative w-full h-64 md:h-auto md:w-1/2 shrink-0 bg-zinc-200 dark:bg-zinc-800 z-0"
-              onContextMenu={(e) => e.preventDefault()}
+              className="relative w-full h-64 md:h-auto md:w-1/2 shrink-0 bg-zinc-200 dark:bg-zinc-800"
             >
               <Image
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-contain pointer-events-none select-none"
+                // object-cover makes it fill the space. 
+                // Use object-contain if you want to see the whole image without cropping.
+                className="object-contain"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
-                draggable={false}
               />
             </div>
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ProfileCard from "../components/ui/ProfileCard"; 
+import ProfileCard from "../components/ui/ProfileCard";
 // Make sure this path matches where you saved your image
-import ProfileImage from "../assets/images/profile3.png"; 
+// import ProfileImage from "../assets/images/profile3.png";
 
 export default function Hero() {
   const handleScroll = (
@@ -21,7 +21,6 @@ export default function Hero() {
     <section className="relative z-10 w-full pt-20 pb-12 md:pt-32 md:pb-24 lg:pb-32 xl:pb-48 text-foreground transition-colors duration-300 ease-in-out overflow-hidden">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="grid gap-12 lg:grid-cols-[1fr_450px] lg:gap-12 xl:grid-cols-[1fr_500px] items-center">
-          
           {/* LEFT COLUMN: Text Content */}
           <motion.div
             className="flex flex-col justify-center space-y-8"
@@ -74,11 +73,11 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="w-full max-w-md perspective-1000">
-              <ProfileCard 
+            <div className="w-full max-w-xs sm:max-w-md perspective-1000">
+              <ProfileCard
                 name="Emmanuel"
                 title="Web Enthusiast"
-                avatarUrl={ProfileImage.src}
+                avatarUrl="/assets/images/profile3.png"
               />
             </div>
           </motion.div>

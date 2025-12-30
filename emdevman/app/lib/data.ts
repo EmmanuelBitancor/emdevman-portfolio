@@ -1,9 +1,5 @@
 // lib/data.ts
-import ctechImg from "../assets/projects/ctech.png"; // Adjust path based on where you moved images
-import inaAniImg from "../assets/projects/ina-ani.png";
-import flexwearImg from "../assets/projects/flexwear.png";
-import hirayaImg from "../assets/projects/hiraya.png";
-import placeholderImg from "../assets/images/placeholder.jpg"; 
+
 
 export const projects = [
   {
@@ -13,7 +9,7 @@ export const projects = [
     tags: ["Next.js", "TypeScript", "Tailwind", "Node.js", "Postman", "MySQL"],
     github: "/error/private", // Or use the isPrivate flag we discussed earlier
     demo: "/error/site",
-    image: ctechImg, // Pass the imported object
+    image: "/assets/projects/ctech.png", // Use string path for Next.js public folder
     isPrivate: true, // Optional: for your PrivateAccess component
   },
   {
@@ -22,7 +18,7 @@ export const projects = [
     tags: ["React", "Node.js", "Postman", "Express", "CSS3", "MySQL"],
     github: "/error/private",
     demo: "/error/site",
-    image: inaAniImg,
+    image: "/assets/projects/ina-ani.png",
     isPrivate: true,
   },
   {
@@ -31,7 +27,7 @@ export const projects = [
     tags: ["Vite+React.js", "Firebase", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/EmmanuelBitancor/FlexWear.git",
     demo: "https://flex-wear.vercel.app/",
-    image: flexwearImg,
+    image: "/assets/projects/flexwear.png",
     isPrivate: false,
   },
   {
@@ -41,7 +37,7 @@ export const projects = [
     tags: ["Next.js", "Supabase", "Tailwind CSS", "Framer Motion"],
     github: "/error/private",
     demo: "/error/private",
-    image: hirayaImg,
+    image: "/assets/projects/hiraya.png",
     isPrivate: true,
   },
   {
@@ -50,7 +46,7 @@ export const projects = [
     tags: ["TBA"],
     github: "/error/private",
     demo: "/error/private",
-    image: placeholderImg,
+    image: "/assets/images/placeholder.jpg",
     isPrivate: true,
   },
   {
@@ -59,7 +55,7 @@ export const projects = [
     tags: ["TBA"],
     github: "/error/private",
     demo: "/error/private",
-    image: placeholderImg,
+    image: "/assets/images/placeholder.jpg",
     isPrivate: true,
   }
 ];
