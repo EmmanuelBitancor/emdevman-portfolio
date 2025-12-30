@@ -1,25 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import profile from "../assets/images/profile.png";
-import profile2 from "../assets/images/profile2.png";
-import profile3 from "../assets/images/profile3.png";
+import ProfileCard from "../components/ui/ProfileCard"; 
+// Make sure this path matches where you saved your image
+import ProfileImage from "../assets/images/profile3.png"; 
 
 export default function Hero() {
-  const images = [profile3, profile, profile2];
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const cycleImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement>,
     targetId: string
   ) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -27,9 +18,11 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative z-10 w-full pt-32 pb-12 md:py-24 lg:py-32 xl:py-48 text-foreground transition-colors duration-300 ease-in-out">
+    <section className="relative z-10 w-full pt-20 pb-12 md:pt-32 md:pb-24 lg:pb-32 xl:pb-48 text-foreground transition-colors duration-300 ease-in-out overflow-hidden">
       <div className="container px-4 md:px-6 mx-auto">
-        <div className="grid gap-12 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] items-center">
+        <div className="grid gap-12 lg:grid-cols-[1fr_450px] lg:gap-12 xl:grid-cols-[1fr_500px] items-center">
+          
+          {/* LEFT COLUMN: Text Content */}
           <motion.div
             className="flex flex-col justify-center space-y-8"
             initial={{ opacity: 0, y: 20 }}
@@ -73,31 +66,19 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-         <motion.div
-            className="flex items-center justify-center"
+          {/* RIGHT COLUMN: The Profile Card */}
+          {/* Added overflow-visible to ensure 3D perspective doesn't clip */}
+          <motion.div
+            className="flex items-center justify-center relative overflow-visible"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            {/* CONTAINER CHANGES: Added explicit widths for mobile */}
-            <div
-              onClick={cycleImage}
-              // 1. Prevent the context menu (right-click/long-press menu)
-              onContextMenu={(e) => e.preventDefault()}
-              className="relative aspect-square overflow-hidden rounded-full border-2 border-zinc-100 dark:border-zinc-800 w-[280px] sm:w-[350px] md:w-[400px] mx-auto transition-colors duration-300 cursor-pointer active:scale-95 transition-transform"
-            >
-              {/* IMAGE CHANGES: Added pointer-events-none and select-none */}
-              <Image
-                alt="Portrait of the developer"
-                src={images[currentImageIndex]}
-                fill
-                sizes="(max-width: 768px) 350px, 400px"
-                // 2. pointer-events-none makes the image ignore touches (passing them to the parent div)
-                // 3. select-none prevents highlighting
-                className="object-cover pointer-events-none select-none"
-                priority
-                // 4. Prevent dragging the image on desktop
-                draggable={false} 
+            <div className="w-full max-w-md perspective-1000">
+              <ProfileCard 
+                name="Emmanuel"
+                title="Web Enthusiast"
+                avatarUrl={ProfileImage.src}
               />
             </div>
           </motion.div>

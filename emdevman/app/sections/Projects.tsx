@@ -43,7 +43,7 @@ export default function Projects() {
   };
 
   // LOGIC: Load 4 items initially to satisfy Mobile view. 
-  // We will hide the 4th one on Desktop using CSS below.
+  // We will hide the 4th one on Desktop using CSS below to maintain the 3-column grid.
   const displayedProjects = showAll ? projects : projects.slice(0, 4);
 
   return (
@@ -85,20 +85,20 @@ export default function Projects() {
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
+                whileHover={{ y: -5, transition: { duration: 0.2 } }} // Framer Motion hover lift
                 viewport={{ once: true, margin: "-50px" }} 
                 exit="exit"
                 // LOGIC: If we are NOT showing all, hide the 4th item (index 3) on Desktop (lg:hidden)
-                // This keeps Mobile at 4 items, and Desktop at 3 items.
-                className={`group relative flex flex-col bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden hover:shadow-xl dark:hover:shadow-2xl dark:hover:shadow-zinc-900/50 transition-all duration-300 hover:-translate-y-1 
+                className={`group relative flex flex-col bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden hover:shadow-xl dark:hover:shadow-2xl dark:hover:shadow-zinc-900/50 transition-shadow duration-300 
                   ${!showAll && index === 3 ? "lg:hidden" : "flex"}
                 `}
               >
-                {/* Image Area - Reduced height on mobile (h-32) */}
-                <div 
+                {/* Image Area - Trigger */}
+                <motion.div 
                   className="relative h-32 sm:h-48 w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 cursor-pointer"
                   onClick={() => handleOpenModal(project)}
-                  // 1. Prevent Right-Click / Long-Press menu on the container
                   onContextMenu={(e) => e.preventDefault()}
+                  whileTap={{ scale: 0.95 }} // Tactile feedback on click
                 >
                   <Image
                     src={project.image}
@@ -106,15 +106,13 @@ export default function Projects() {
                     fill
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
-                    // 2. pointer-events-none: Ensures the image doesn't "catch" the touch, letting it hit the parent div instead
-                    // 3. select-none: Prevents blue highlighting
+                    // CSS Scale on hover works alongside Framer Motion
                     className="transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
-                    // 4. Prevent dragging on desktop
                     draggable={false}
                   />
-                </div>
+                </motion.div>
 
-                {/* Content Area - Compact padding on mobile */}
+                {/* Content Area */}
                 <div className="flex flex-col flex-1 p-3 md:p-6">
                   <div className="flex justify-between items-start mb-2 md:mb-4">
                     <h3 className="text-sm md:text-xl font-bold tracking-tight line-clamp-1">
