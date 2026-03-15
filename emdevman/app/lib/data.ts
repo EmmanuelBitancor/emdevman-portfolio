@@ -8,7 +8,7 @@ export const projects = [
       "The CTECH x CCSET Merged System began as a collaborative project between 3rd-year and 4th-year Computer Science students—a platform created to publish student research papers with an integrated Peer Reviewer System for instructors. When I was in my 3rd year, I was assigned as the Project Leader, responsible for guiding my teammates, giving direction, and ensuring the system took shape according to our goals.As I stepped into my 4th year, the project continued to grow along with me. I took the initiative to fully revamp the system’s design, elevating its features, functionality, and overall user experience. What started as a class requirement has become a long-term project that reflects both our collaboration and my commitment to improving and innovating the system as we move forward.",
     tags: ["Next.js", "TypeScript", "Tailwind", "Node.js", "Postman", "MySQL"],
     github: "/error/private", // Or use the isPrivate flag we discussed earlier
-    demo: "https://bisubilarctech-0adba2bc1c57.herokuapp.com/",
+    demo: "https://www.ctech.bisubilar.org/",
     image: "/assets/projects/ctech.png", // Use string path for Next.js public folder
     isPrivate: true, // Optional: for your PrivateAccess component
   },
