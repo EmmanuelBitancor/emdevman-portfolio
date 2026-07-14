@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { Linkedin, Mail, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -49,21 +49,21 @@ export default function Contact() {
               </div>
             </a>
 
-             <a
-              href="https://www.linkedin.com/in/emmanuel-bitancor/"
+            <a
+              href="https://github.com/EmmanuelBitancor"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 transition-colors duration-300"
             >
               <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white dark:bg-zinc-800 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <Linkedin className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
+                <Github className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
               </div>
               <div>
                 <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">
-                  LinkedIn
+                  GitHub
                 </p>
                 <p className="text-zinc-900 dark:text-zinc-100 font-semibold">
-                  Emmanuel Bitancor
+                  EmmanuelBitancor
                 </p>
               </div>
             </a>
@@ -77,7 +77,7 @@ export default function Contact() {
                   Location
                 </p>
                 <p className="text-zinc-900 dark:text-zinc-100 font-semibold">
-                  Somewhere in Mars
+                  Somewhere Bohol, Philippines
                 </p>
               </div>
             </div>
