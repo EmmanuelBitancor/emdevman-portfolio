@@ -1,5 +1,9 @@
 // lib/data.ts
 
+import pcosImage from "../assets/projects/pcos.png";
+import cuisinaImage from "../assets/projects/OUTSIDE.png";
+import profileImage from "../assets/projects/portfolio.png";
+
 
 export const projects = [
   {
@@ -31,31 +35,31 @@ export const projects = [
     isPrivate: false,
   },
   {
-    title: "HirayaPH",
+    title: "Cuisina AI",
     description:
-      "A Social Media Web Application that allows users to connect, share content, and interact with each other. Built with NextJS for the frontend and Node.js for the backend, Hiraya offers a seamless and engaging user experience.",
+      "Cuisina-AI is an innovative mobile application designed to enhance food safety, nutrition awareness, and everyday cooking experiences through the power of artificial intelligence. The app utilizes Convolutional Neural Networks (CNN), a state-of-the-art deep learning algorithm, to accurately identify different types of livestock and meat—including beef, pork, chicken, and goat—using real-time image analysis. By simply capturing or uploading an image, users can instantly determine the type of meat they are handling, reducing the risk of misidentification that may lead to improper preparation or dietary concerns.",
     tags: ["Next.js", "Supabase", "Tailwind CSS", "Framer Motion"],
     github: "/error/private",
-    demo: "/error/private",
-    image: "/assets/projects/hiraya.png",
+    demo: "https://play.google.com/store/apps/details?id=com.fullstack.cuisinaapp",
+    image: cuisinaImage,
     isPrivate: true,
   },
   {
-    title: "Coming Soon...",
-    description: "No Description Available",
+    title: "Digital PCOS Awareness",
+    description: "Empowering women with knowledge about Polycystic Ovary Syndrome. Learn about prevention, symptoms, and healthy lifestyle changes.",
     tags: ["TBA"],
     github: "/error/private",
-    demo: "/error/private",
-    image: "/assets/images/placeholder.jpg",
+    demo: "https://digital-awareness-rose.vercel.app/",
+    image: pcosImage,
     isPrivate: true,
   },
   {
-    title: "Coming Soon...",
-    description: "No Description Available",
+    title: "Portfolio Website",
+    description: "A Digital Portfolio Website showcasing my skills, projects, and experiences. This website serves as a personal branding tool, allowing me to present my work and achievements in a professional and visually appealing manner.",
     tags: ["TBA"],
     github: "/error/private",
-    demo: "/error/private",
-    image: "/assets/images/placeholder.jpg",
+    demo: "https://emmanuelbitancor.vercel.app",
+    image: profileImage,
     isPrivate: true,
   }
 ];
